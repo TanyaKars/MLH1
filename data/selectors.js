@@ -16,6 +16,7 @@ const elements = {
     "tryAgainBtn": ".btn-primary",
     "error": ".ant-form-item-explain-error",
     "outsideOfAnyField": "#root",
+
 }
 
 module.exports = elements;

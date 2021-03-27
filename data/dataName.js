@@ -14,7 +14,6 @@ const elements = {
     "code":"<code>",
 
 
-
 }
 
 module.exports = elements;

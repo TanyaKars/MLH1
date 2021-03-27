@@ -137,4 +137,5 @@ describe('Positive test cases for the Name field', function () {
     // let alert = $(sel.nameAlert).isDisplayed();
     // expect(alert).toEqual(false);
     // });
+
 });
