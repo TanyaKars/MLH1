@@ -32,5 +32,4 @@ describe('Required fields and story created', function () {
         expect(tryAgain).toEqual(true);
 
     });
-
 });

@@ -61,5 +61,4 @@ describe('Labels are correct', function () {
         let age = $(sel.submit).getText();
         expect(age).toEqual(exp.submitButtonLabel);
     });
-
 });
