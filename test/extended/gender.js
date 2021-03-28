@@ -1,6 +1,6 @@
 import sel from '../../data/selectors';
-import exp from '../../data/expected.json';
-import * as wrapper from "rxjs/operators";
+import data, {age, gender, name, story} from '../../data/testData';
+import inputValues4 from "../../helpers/methods";
 
 describe('Positive test cases for the gender radiobutton', function () {
 
@@ -8,26 +8,120 @@ describe('Positive test cases for the gender radiobutton', function () {
         browser.url('');
     });
 
-    // it('TC-047 Button HE is enabled', function () {
-    //     $$(sel.genderButton)[0].click();
-    //     let genderHeBtn = $$(sel.genderButton)[0].isSelected();
-    //     expect(genderHeBtn).toEqual(true);
-    // });
+    beforeEach('refresh browser', function() {
+        browser.refresh();
+        browser.pause(2000);
+    });
 
-    // it('TC-059 NEGATIVE Not chosen button / Required', function () {
-    //     $(sel.name).setValue("SuperGirl(*|*)")
-    //     $(sel.age).setValue("1234567890");
-    //     $(sel.storyType).click();
-    //     $$(sel.storyList)[6].click();
-    //     let submitBtn = $(sel.submit).isEnabled();
-    //     expect(submitBtn).toEqual(false);
-    // });
-    it('TC-047 Button 1 is enabled', function () {
-        $(sel.name).setValue("SuperGirl(*|*)")
-        $$(sel.radioButtons)[1].click();
-        $(sel.age).setValue("1234567890");
-        let he = $$(sel.radioButtons)[1].isSelected();
-        expect(he).toEqual(true);
+    it('TC-047 Button HE is enabled', function () {
+        $$(sel.radioButtons)[gender.he].click();
+        let genderHeBtn = $$(sel.radioButtons)[gender.he].isSelected();
+        expect(genderHeBtn).toEqual(true);
+    });
+
+    it('TC-048 Button SHE is enabled', function () {
+        $$(sel.radioButtons)[gender.she].click();
+        let genderHeBtn = $$(sel.radioButtons)[gender.she].isSelected();
+        expect(genderHeBtn).toEqual(true);
+    });
+
+    it('TC-049 Button IT is enabled', function () {
+        $$(sel.radioButtons)[gender.it].click();
+        let genderHeBtn = $$(sel.radioButtons)[gender.it].isSelected();
+        expect(genderHeBtn).toEqual(true);
+    });
+
+    it('TC-050a User can use only one button at the time: he', function () {
+        $$(sel.radioButtons)[gender.he].click();
+        let genderSheBtn = $$(sel.radioButtons)[gender.she].isSelected();
+        expect(genderSheBtn).toEqual(false);
+    });
+
+    it('TC-050b User can use only one button at the time: he', function () {
+        $$(sel.radioButtons)[gender.he].click();
+        let genderItBtn = $$(sel.radioButtons)[gender.it].isSelected();
+        expect(genderItBtn).toEqual(false);
+    });
+
+    it('TC-051a User can use only one button at the time: she', function () {
+        $$(sel.radioButtons)[gender.she].click();
+        let genderHeBtn = $$(sel.radioButtons)[gender.he].isSelected();
+        expect(genderHeBtn).toEqual(false);
+    });
+
+    it('TC-051b User can use only one button at the time: she', function () {
+        $$(sel.radioButtons)[gender.she].click();
+        let genderItBtn = $$(sel.radioButtons)[gender.it].isSelected();
+        expect(genderItBtn).toEqual(false);
+    });
+
+    it('TC-052a User can use only one button at the time: it', function () {
+        $$(sel.radioButtons)[gender.it].click();
+        let genderHeBtn = $$(sel.radioButtons)[gender.he].isSelected();
+        expect(genderHeBtn).toEqual(false);
+    });
+
+    it('TC-052b User can use only one button at the time: it', function () {
+        $$(sel.radioButtons)[gender.it].click();
+        let genderSheBtn = $$(sel.radioButtons)[gender.she].isSelected();
+        expect(genderSheBtn).toEqual(false);
+    });
+
+    it('TC-053 User can switch the option: he -> she', function () {
+        $$(sel.radioButtons)[gender.he].click();
+        $$(sel.radioButtons)[gender.she].click();
+        let genderSheBtn = $$(sel.radioButtons)[gender.she].isSelected();
+        expect(genderSheBtn).toEqual(true);
+    });
+
+    it('TC-054 User can switch the option: he -> it', function () {
+        $$(sel.radioButtons)[gender.he].click();
+        $$(sel.radioButtons)[gender.it].click();
+        let genderHeBtn = $$(sel.radioButtons)[gender.it].isSelected();
+        expect(genderHeBtn).toEqual(true);
+    });
+
+    it('TC-055 User can switch the option: she -> he', function () {
+        $$(sel.radioButtons)[gender.she].click();
+        $$(sel.radioButtons)[gender.he].click();
+        let genderHeBtn = $$(sel.radioButtons)[gender.he].isSelected();
+        expect(genderHeBtn).toEqual(true);
+    });
+
+    it('TC-056 User can switch the option: she -> it', function () {
+        $$(sel.radioButtons)[gender.she].click();
+        $$(sel.radioButtons)[gender.it].click();
+        let genderHeBtn = $$(sel.radioButtons)[gender.it].isSelected();
+        expect(genderHeBtn).toEqual(true);
+    });
+
+    it('TC-057 User can switch the option: it -> she', function () {
+        $$(sel.radioButtons)[gender.it].click();
+        $$(sel.radioButtons)[gender.she].click();
+        let genderHeBtn = $$(sel.radioButtons)[gender.she].isSelected();
+        expect(genderHeBtn).toEqual(true);
+    });
+
+    it('TC-058 User can switch the option: it -> he', function () {
+        $$(sel.radioButtons)[gender.it].click();
+        $$(sel.radioButtons)[gender.he].click();
+        let genderHeBtn = $$(sel.radioButtons)[gender.he].isSelected();
+        expect(genderHeBtn).toEqual(true);
+    });
+});
+    describe('Negative test cases for the gender radiobutton', function () {
+
+        beforeEach('refresh browser', function(){
+            browser.refresh();
+        });
+
+        it('TC-059  Not chosen button / Required', function () {
+        $(sel.name).setValue(name.default);
+        $(sel.age).setValue(age.default);
+        $(sel.storyType).click();
+        $$(sel.storyList)[story.comedy].click();
+        let submitBtn = $(sel.submit).isEnabled();
+        expect(submitBtn).toEqual(false);
     });
 });
 

@@ -5,7 +5,6 @@ const elements = {
     "name": "#name",
     "namePlaceholder": "#name:placeholder-shown",
     "radioButtons": ".ant-radio",
-    "genderButton": ".ant-radio-inner",
     "radioButtonsLabels": ".ant-radio-wrapper",
     "age": "#age",
     "storyType": ".ant-select-selector",

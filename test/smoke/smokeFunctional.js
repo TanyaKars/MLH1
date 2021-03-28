@@ -14,8 +14,6 @@ describe('Required fields and story created', function () {
         $(sel.age).setValue(age.default);
         $(sel.storyType).click();
         $$(sel.storyList)[story.comedy].click();
-
-        browser.pause(2000);
         let submitBtn = $(sel.submit).isEnabled();
         expect(submitBtn).toEqual(true);
 
