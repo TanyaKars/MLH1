@@ -1,6 +1,7 @@
 {
   "title": "MLH trial",
   "header": "My Little Hero",
+  "headerSecondP": "My Little Hero",
   "instruction": "Let's create your own HERO! It's super easy with our application!",
   "nameLabel": "1. What is your Hero's name?",
   "namePHolder": "Hero's name",
@@ -9,13 +10,16 @@
   "genderShe": "she",
   "genderIt": "it",
   "ageLabel": "3. How old is your Hero?",
+  "agePHolder": "Hero's age",
   "storyTypeLabel": "4. What type of story would you like to read?",
   "imageLabel": "5. Upload an image (optional)",
   "submitButtonLabel": "Create!",
-  "storyHeader": "Two Cats And A SuperGirl(*|*)",
-  "story": "After a feast, two cats see a piece of cake and start fighting for it.\n SuperGirl(*|*), who is 1234567890 years old, sees this as an opportunity for gain and offers to help them. Our hero divides the cake into two parts but shakes her head saying they are unequal. She takes a bite of one piece and then the other, but still finds them unequal.\n She continues doing so until there is no more cake left leaving the poor little cats disappointed.",
-  "storyMoral": "Moral: When you quarrel amongst yourselves, someone else gains from it.",
+  "storyTitle": "Two Cats And A SuperGirl(*|*)",
   "alertName1": "Required",
-  "alertName2": "70 symbols max"
+  "alertName2": "70 symbols max",
+  "trimmed0": "1",
+  "trimmedSpaces": "123123",
+  "one": "1",
+  "two": "2"
 
 }
