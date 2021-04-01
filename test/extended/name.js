@@ -1,7 +1,7 @@
 import sel from '../../data/selectors';
 import exp from '../../data/expected.json';
-import data, {age, gender, name, story} from '../../data/testData';
-import inputValues4 from "../../helpers/methods";
+import {age, gender, name, story} from '../../data/testData';
+import {inputValue4, inputGenderAgeStory} from "../../helpers/methods";
 
 
 describe('Positive test cases for the Name field', function () {
@@ -90,8 +90,8 @@ describe('Positive test cases for the Name field', function () {
     // });
 
     it('TC-041 Name field do not accept Empty name field', function () {
-        $(sel.name).click();
-        $(sel.outsideOfAnyField).click();
+        $(sel.name).setValue(name.default);
+        $(sel.name).keys(['Backspace']);
         let alert = $(sel.errorName).isDisplayed();
         expect(alert).toEqual(true);
     });
@@ -103,7 +103,7 @@ describe('Positive test cases for the Name field', function () {
     });
 
     it('TC-044 User left Name input field blank (Submit button)', function () {
-        inputValues4(gender.she, age.default, story.comedy);
+        inputGenderAgeStory(gender.she, age.default, story.comedy);
         let submitBtn = $(sel.submit).isEnabled();
         expect(submitBtn).toEqual(false);
     });
@@ -115,7 +115,7 @@ describe('Positive test cases for the Name field', function () {
     });
 
     it('TC-046 Name field do not accept spaces only (Submit button disabled)', function () {
-       inputValues4(name.allSpaces, gender.she, age.default, story.comedy)
+       inputValue4(name.allSpaces, gender.she, age.default, story.comedy)
         let submitBtn = $(sel.submit).isEnabled();
         expect(submitBtn).toEqual(false);
     });
