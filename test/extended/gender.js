@@ -1,6 +1,6 @@
 import sel from '../../data/selectors';
-import data, {age, gender, name, story} from '../../data/testData';
-import inputNameAgeStory from "../../helpers/methods";
+import {age, gender, name, story} from '../../data/testData';
+import {inputNameAgeStory} from "../../helpers/methods";
 describe('Positive test cases for the gender radiobutton', function () {
 
     before('Open App', function () {

@@ -12,14 +12,26 @@
   "ageLabel": "3. How old is your Hero?",
   "agePHolder": "Hero's age",
   "storyTypeLabel": "4. What type of story would you like to read?",
+  "storyPlaceholder": "Type of the story",
   "imageLabel": "5. Upload an image (optional)",
   "submitButtonLabel": "Create!",
+  "resetButtonLabel": "Try again!",
   "storyTitle": "Two Cats And A SuperGirl(*|*)",
   "alertName1": "Required",
   "alertName2": "70 symbols max",
   "trimmed0": "1",
   "trimmedSpaces": "123123",
   "one": "1",
-  "two": "2"
-
+  "two": "2",
+  "his": "his",
+  "her": "her",
+  "its": "its",
+  "heC": "He,He",
+  "sheC": "She,She",
+  "itC": "It,It",
+  "ageDefault": "1234567890",
+  "year": "year",
+  "years": "years",
+  "storyMoral": "Moral: When you quarrel amongst yourselves, someone else gains from it.",
+  "emptyField": ""
 }

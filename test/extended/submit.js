@@ -1,7 +1,8 @@
 import sel from '../../data/selectors';
 import {name, gender,age, story, generatedStory} from '../../data/testData';
 import exp from '../../data/expected.json';
-import {inputValue4Submit} from '../../helpers/methods';
+import {inputValue4Submit,inputValue4, imageUpload} from '../../helpers/methods';
+import path from "path";
 
 
 describe('Positive test cases for the submit button', function () {
@@ -9,7 +10,7 @@ describe('Positive test cases for the submit button', function () {
         browser.url('');
     });
 
-    beforeEach('refresh browser', function() {
+    beforeEach('refresh browser', function () {
         browser.refresh();
     });
 
@@ -46,14 +47,14 @@ describe('Positive test cases for the submit button', function () {
     it('TC-180a Gender is correct (+possessive) and appears in the story: "he"', function () {
         inputValue4Submit(name.default, gender.he, age.default, story.comedy)
         let storyBody = $$(sel.storySecondP)[generatedStory.storyINDX].getText();
-        let res = storyBody.match(/ \bHis\b/ig)
+        let res = storyBody.match(/\bhis\b/ig)
         expect(res.toString().trim()).toEqual(exp.his);
     });
 
     it('TC-180b Gender is correct (+possessive) and appears in the story: "his"', function () {
         inputValue4Submit(name.default, gender.he, age.default, story.comedy)
         let storyBody = $$(sel.storySecondP)[generatedStory.storyINDX].getText();
-        let res = storyBody.match(/\bhe\b/ig)
+        let res = storyBody.match(/\bHe\b/ig)
         expect(res.toString().trim()).toEqual(exp.heC);
     });
 
@@ -81,7 +82,7 @@ describe('Positive test cases for the submit button', function () {
     it('TC-182b Gender is correct (+possessive) and appears in the story: "it"', function () {
         inputValue4Submit(name.default, gender.it, age.default, story.comedy)
         let storyBody = $$(sel.storySecondP)[generatedStory.storyINDX].getText();
-        let res = storyBody.match(/\bIt\b/g)
+        let res = storyBody.match(/\bIt\b/ig)
         expect(res.toString().trim()).toEqual(exp.itC);
     });
 
@@ -119,10 +120,20 @@ describe('Positive test cases for the submit button', function () {
         expect(storyBody).toEqual(generatedStory.storyGenerated);
     });
 
-    it('TC-190 Uploaded avatar is present.', function () {
-        inputValue5Submit(name.default, gender.she, age.default, story.comedy)
-        let storyBody = $$(sel.storySecondP)[generatedStory.storyINDX].getText();
-        expect(storyBody).toEqual(generatedStory.storyGenerated);
+    it.only('TC-190 Uploaded avatar is present.', function () {
+        inputValue4(name.default, gender.she, age.default, story.comedy)
+        const fileUpload = $(sel.imageUpload);
+        const filePath = path.join(__dirname, '../../data/photo/Ameliia2.jpg');
+        const remoteFilePath = browser.uploadFile(filePath);
+        browser.execute(
+            (el) => el.style.display = 'block',
+            fileUpload
+        );
+        fileUpload.waitForDisplayed();
+        fileUpload.setValue(remoteFilePath);
+        $(sel.submit).click();
+        let avatar = $(sel.noAvatar).isDisplayed();
+        expect(avatar).toEqual(false);
     });
 
     it('TC-191 User doesn\'t upload an avatar.', function () {
@@ -142,5 +153,4 @@ describe('Positive test cases for the submit button', function () {
         let storyBody = $$(sel.storySecondP)[generatedStory.moraINDX].getText();
         expect(storyBody).toEqual(exp.storyMoral);
     });
-
 });
